@@ -2,7 +2,7 @@ package com.example;
 
 import java.util.Scanner;
 
-public class arraylistchallengeArrayListChallenge {
+public class ArrayListChallenge {
 
     private static Scanner scan = new Scanner(System.in);
     private static MobilePhone mobilePhone = new MobilePhone("0700000000");

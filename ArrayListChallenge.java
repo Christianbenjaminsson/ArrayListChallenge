@@ -1,4 +1,4 @@
-package com.example;
+package com.example.arraylistchallenge;
 
 import java.util.Scanner;
 
@@ -15,10 +15,10 @@ public class ArrayListChallenge {
         printActions();
 
         while(!quit) {
-            System.out.println("\nEnter action: (6 to show available actions");
+            System.out.println("\nEnter action: (6 to show available actions) ");
             int action = scan.nextInt();
             scan.nextLine();
-            
+
             switch(action) {
                 case 0:
                     System.out.println("\nShutting down");
@@ -32,16 +32,16 @@ public class ArrayListChallenge {
                     break;
                 case 3:
                     updateContact();
-                    break
+                    break;
                 case 4:
                     removeContact();
                     break;
                 case 5:
                     queryContact();
-                    break
+                    break;
                 case 6:
                     printActions();
-                    break:
+                    break;
             }
         }
 
@@ -54,13 +54,62 @@ public class ArrayListChallenge {
         String phone = scan.nextLine();
         Contact newContact = Contact.createContact(name, phone);
         if ( mobilePhone.addNewContact(newContact)) {
-            System.out.println("New contact added: name= " + name + ", phone=" + phone);
+            System.out.println("New contact added: name= " + name + ", phone= " + phone);
         } else {
             System.out.println("can't add, " + name + " already on file");
         }
     }
 
     private static void updateContact() {
+        System.out.println("Enter existing contact name: ");
+        String name = scan.nextLine();
+        Contact existingContactRecord = mobilePhone.queryContact(name);
+        if ( existingContactRecord == null) {
+            System.out.println("Contact not found");
+            return;
+        }
+
+        System.out.print("Enter new contact name: ");
+        String newName = scan.nextLine();
+        System.out.println("Enter new contact phone number: ");
+        String newNumber = scan.nextLine();
+        Contact newContact = Contact.createContact(newName, newNumber);
+        if(mobilePhone.updateContact(existingContactRecord, newContact)) {
+            System.out.println("Successfully updating record");
+        } else {
+            System.out.println("Error updating record");
+        }
+    }
+
+    private static void removeContact() {
+        System.out.println("Enter existing contact name: ");
+        String name = scan.nextLine();
+        Contact existingContactRecord = mobilePhone.queryContact(name);
+        if (existingContactRecord == null) {
+            System.out.println("Contact not found");
+            return;
+        }
+
+        if(mobilePhone.removeContact(existingContactRecord)) {
+            System.out.println("Successfully deleted contact");
+
+        } else {
+
+            System.out.println("Error deleting contact");
+
+        }
+    }
+
+    private static void queryContact() {
+        System.out.println("Enter existing contact name: ");
+        String name = scan.nextLine();
+        Contact existingContactRecord = mobilePhone.queryContact(name);
+        if (existingContactRecord == null) {
+            System.out.println("Contact not found");
+            return;
+        }
+
+        System.out.println("Name: " + existingContactRecord.getName() + " phone number is " + existingContactRecord.getPhoneNumber());
 
     }
 
@@ -71,12 +120,12 @@ public class ArrayListChallenge {
     private static void printActions() {
         System.out.println("\nAvailable actions: \nPress");
         System.out.println("0 - to shutdown\n" +
-                           "1 - to print contacts\n" +
-                           "2 - to add a new contact\n" +
-                           "3 - to update an existing contact\n" +
-                           "4 - to remove an existing contact" +
-                           "5 - query if an existing contact exists\n" +
-                           "6 - to print list of available actions");
+                "1 - to print contacts\n" +
+                "2 - to add a new contact\n" +
+                "3 - to update an existing contact\n" +
+                "4 - to remove an existing contact\n" +
+                "5 - query if an existing contact exists\n" +
+                "6 - to print list of available actions");
         System.out.print("Choose your action: ");
     }
 

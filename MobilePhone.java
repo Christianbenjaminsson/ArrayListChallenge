@@ -1,4 +1,4 @@
-package com.example;
+package com.example.arraylistchallenge;
 
 import java.util.ArrayList;
 
@@ -30,8 +30,8 @@ public class MobilePhone {
         }
 
         this.myContacts.set(foundPosition, newContact);
-            System.out.println(oldContact.getName() + ", was replaced with " + newContact.getName());
-            return true;
+        System.out.println(oldContact.getName() + ", was replaced with " + newContact.getName());
+        return true;
     }
 
     public boolean removeContact(Contact contact) {
@@ -69,11 +69,20 @@ public class MobilePhone {
         return null;
     }
 
+    public Contact queryContact(String name) {
+        int position = findContact(name);
+        if ( position >= 0) {
+            return this.myContacts.get(position);
+        }
+
+        return null;
+    }
+
     public void printContacts() {
         System.out.println("Contact list");
         for ( int i = 0; i < this.myContacts.size(); i ++ ) {
             System.out.println((i + 1) + "." +
-                    this.myContacts.get(i).getName() + " ->" +
+                    this.myContacts.get(i).getName() + " -> " +
                     this.myContacts.get(i).getPhoneNumber());
         }
     }

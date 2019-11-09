@@ -1,4 +1,4 @@
-package com.example;
+package com.example.arraylistchallenge;
 
 public class Contact {
 

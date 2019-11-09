@@ -31,9 +31,36 @@ public class ArrayListChallenge {
                     addNewContact();
                     break;
                 case 3:
-
+                    updateContact();
+                    break
+                case 4:
+                    removeContact();
+                    break;
+                case 5:
+                    queryContact();
+                    break
+                case 6:
+                    printActions();
+                    break:
             }
         }
+
+    }
+
+    private static void addNewContact() {
+        System.out.println("Enter new contact name: ");
+        String name = scan.nextLine();
+        System.out.println("Enter phone number: ");
+        String phone = scan.nextLine();
+        Contact newContact = Contact.createContact(name, phone);
+        if ( mobilePhone.addNewContact(newContact)) {
+            System.out.println("New contact added: name= " + name + ", phone=" + phone);
+        } else {
+            System.out.println("can't add, " + name + " already on file");
+        }
+    }
+
+    private static void updateContact() {
 
     }
 
